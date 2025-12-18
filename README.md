@@ -45,6 +45,6 @@ docker run -d --name svn -p 3690:3690 \
 ### Docker Compose
 
 ```bash
-curl -fsSL -o docker-compose.yaml https://raw.githubusercontent.com/lvillis/svn-docker/main/deploy/compose/docker-compose.yaml
+curl -fsSL -o docker-compose.yaml https://raw.githubusercontent.com/lvillis/svn-docker/main/docker-compose.yaml
 docker-compose up -d
 ```
