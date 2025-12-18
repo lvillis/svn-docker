@@ -53,9 +53,9 @@ jobs:
           platforms: linux/amd64
           push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
-            ghcr.io/${{ github.repository }}:${{ steps.extract_version.outputs.version }}
+            ghcr.io/${{ github.repository_owner }}/svn:latest
+            ghcr.io/${{ github.repository_owner }}/svn:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/svn:${{ steps.extract_version.outputs.version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -63,7 +63,7 @@ jobs:
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: |
           set -eux
-          REPO=ghcr.io/${{ github.repository }}
+          REPO=ghcr.io/${{ github.repository_owner }}/svn
           echo "Image pushed: ${REPO}:latest"
           echo "Image pushed: ${REPO}:${{ github.sha }}"
           VER="${{ steps.extract_version.outputs.version }}"
