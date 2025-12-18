@@ -45,7 +45,7 @@ ENV LANG=C.UTF-8 \
 
 COPY --from=builder /out/ /
 
-COPY --from=docker.io/lvillis/tino:latest /sbin/tino /sbin/tino
+COPY --from=ghcr.io/lvillis/tino:latest /sbin/tino /sbin/tino
 
 WORKDIR /opt/app/svn
 
