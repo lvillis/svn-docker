@@ -1,0 +1,9 @@
+services:
+  svn:
+    container_name: svn
+    image: ghcr.io/lvillis/svn:1.14.5
+    ports:
+      - "3690:3690"
+    volumes:
+      - ./data:/opt/app/svn/data:rw
+      - /etc/localtime:/etc/localtime:ro

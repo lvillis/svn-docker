@@ -33,16 +33,18 @@
 
 ## Usage
 
-
+### Docker
 ```bash
 docker run -d --name svn -p 3690:3690 \
-	-v /path/to/data:/opt/app/svn/data \
+	-v ./data:/opt/app/svn/data \
 	--restart unless-stopped \
 	ghcr.io/lvillis/svn:1.14.5
 ```
 
-Notes:
 
-- Mount a host volume at `/opt/app/svn/data` to persist repositories.
-- Logs are written to stdout by default; use container logs or external logging driver.
+### Docker Compose
 
+```bash
+curl -fsSL -o docker-compose.yaml https://raw.githubusercontent.com/lvillis/svn-docker/main/deploy/compose/docker-compose.yaml
+docker-compose up -d
+```
