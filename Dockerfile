@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim AS builder
+FROM debian:13.2-slim AS builder
 
 RUN set -eux; \
     apt-get update; \
@@ -38,7 +38,7 @@ RUN set -eux; \
     done; \
     rm -rf /tmp/subversion.tar.bz2 /tmp/subversion-1.14.5 /tmp/runtime-files /tmp/runtime-files.sorted
 
-FROM debian:bookworm-slim AS runtime
+FROM debian:13.2-slim AS runtime
 
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8
