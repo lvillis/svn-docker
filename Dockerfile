@@ -21,11 +21,13 @@ RUN set -eux; \
       \( -name '*.so*' -o -perm -111 \) \
       ! -name '*.a' ! -name '*.la' \
       -print0 2>/dev/null | xargs -0 -r strip --strip-unneeded || true; \
-    runtime_pkgs="libapr1 libaprutil1 libserf-1-1 libsqlite3-0 libssl3 libexpat1 zlib1g liblz4-1 libcrypt1 libuuid1 libgssapi-krb5-2 libkrb5-3 libk5crypto3 libkrb5support0 libcom-err2 libkeyutils1 libstdc++6 libgcc-s1"; \
+    \
+    runtime_pkgs="libapr1t64 libaprutil1t64 libserf-1-1 libsqlite3-0 libssl3 libexpat1 zlib1g liblz4-1 libcrypt1 libuuid1 libgssapi-krb5-2 libkrb5-3 libk5crypto3 libkrb5support0 libcom-err2 libkeyutils1 libstdc++6 libgcc-s1"; \
+    \
     mkdir -p /out/opt/app/svn; \
     : > /tmp/runtime-files; \
     for pkg in $runtime_pkgs; do \
-      dpkg-query -L "$pkg" | grep -E '^/(usr/)?(lib|lib64|libexec|bin|sbin)' >> /tmp/runtime-files; \
+      dpkg-query -L "$pkg" 2>/dev/null | grep -E '^/(usr/)?(lib|lib64|libexec|bin|sbin)' >> /tmp/runtime-files || true; \
     done; \
     sort -u /tmp/runtime-files > /tmp/runtime-files.sorted; \
     rsync -a --ignore-missing-args --files-from=/tmp/runtime-files.sorted / /out; \
